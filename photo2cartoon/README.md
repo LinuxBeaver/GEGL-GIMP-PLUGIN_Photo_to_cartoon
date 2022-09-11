@@ -1,8 +1,10 @@
-
-
+Compile and put the binary in /gegl-0.4/plug-ins
+Linux users have the option to skip compiling and use a prebuilt binary named photo2cartoon.so
 
 
 ## Compiling and Installing
+
+
 
 ### Linux
 
