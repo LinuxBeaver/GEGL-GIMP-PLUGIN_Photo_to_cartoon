@@ -56,7 +56,7 @@ enum_start (gegl_blend_mode_type2)
               N_("HardLight"))
   enum_value (GEGL_BLEND_MODE_TYPE_MULTIPLY,      "Multiply",
               N_("Multiply"))
-  enum_value (GEGL_BLEND_MODE_TYPE_SATURATION,      "Remove Color",
+  enum_value (GEGL_BLEND_MODE_TYPE_OVERLAY,      "Overlay", 
               N_("Overlay"))
 property_enum (blendmode, _("Blend Mode of Lighting and Chroma"),
     GeglBlendModeType2, gegl_blend_mode_type2,
@@ -136,7 +136,7 @@ typedef struct
   GeglNode *gegl3;
   GeglNode *hardlight;
   GeglNode *multiply;
-  GeglNode *saturation;
+  GeglNode *overlay; 
   GeglNode *lightchroma;
   GeglNode *gegl4;
   GeglNode *smooth;
@@ -154,7 +154,7 @@ update_graph (GeglOperation *operation)
   GeglNode *usethis = state->hardlight; /* the default */
   switch (o->blendmode) {
     case GEGL_BLEND_MODE_TYPE_MULTIPLY: usethis = state->multiply; break;
-    case GEGL_BLEND_MODE_TYPE_SATURATION: usethis = state->saturation; break;
+    case GEGL_BLEND_MODE_TYPE_OVERLAY: usethis = state->overlay; break;
   }
   gegl_node_link_many (state->input, state->nop, state->nr, state->gegl1, state->dog, state->gegl2, state->levels, state->gegl3, usethis, state->gegl4, state->smooth, state->mcb, state->output,  NULL);
   gegl_node_connect_from (usethis, "aux", state->lightchroma, "output");
@@ -165,7 +165,7 @@ static void attach (GeglOperation *operation)
 {
   GeglNode *gegl = operation->node;
 GeglProperties *o = GEGL_PROPERTIES (operation);
-  GeglNode *input, *output, *nop, *nr, *gegl1, *dog, *gegl2, *levels, *gegl3, *hardlight, *multiply, *saturation, *lightchroma, *gegl4, *smooth, *mcb;
+  GeglNode *input, *output, *nop, *nr, *gegl1, *dog, *gegl2, *levels, *gegl3, *hardlight, *multiply, *overlay, *lightchroma, *gegl4, *smooth, *mcb;
 
   input    = gegl_node_get_input_proxy (gegl, "input");
   output   = gegl_node_get_output_proxy (gegl, "output");
@@ -187,9 +187,7 @@ GeglProperties *o = GEGL_PROPERTIES (operation);
                                   "operation", "gegl:hard-light",
                                   NULL);
 
-  saturation    = gegl_node_new_child (gegl,
-                                  "operation", "gegl:saturation",
-                                  NULL);
+  overlay = gegl_node_new_child (gegl, "operation", "gegl:overlay", "srgb", TRUE, NULL);
 
 
 
@@ -286,7 +284,7 @@ GeglProperties *o = GEGL_PROPERTIES (operation);
   state->gegl3 = gegl3;
   state->hardlight = hardlight;
   state->multiply = multiply;
-  state->saturation = saturation;
+  state->overlay = overlay;
   state->lightchroma = lightchroma;
   state->gegl4 = gegl4;
   state->smooth = smooth;
