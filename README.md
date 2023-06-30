@@ -1,5 +1,4 @@
-Compile and put the binary in /gegl-0.4/plug-ins
-Linux users have the option to skip compiling and use a prebuilt binary named photo2cartoon.so
+## Turn a photo to a cartoon with this GEGL Gimp Plugin
 ![image preview](photo2cartoon2.png)
 ![image preview](photo2cartoon.png)
 
