@@ -296,10 +296,11 @@ GeglOperationMetaClass *operation_meta_class = GEGL_OPERATION_META_CLASS (klass)
   gegl_operation_class_set_keys (operation_class,
     "name",        "gegl:photo2cartoon",
     "title",       _("Photo to Cartoon"),
-    "categories",  "Artistic",
     "reference-hash", "h3af1vv0nyesyeefjf25sb2ac",
     "description", _("GEGL makes a image into a cartoon."
                      ""),
+    "gimp:menu-path", "<Image>/Filters/Artistic",
+    "gimp:menu-label", _("Photo to Cartoon..."),
     NULL);
 }
 
