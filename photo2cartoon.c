@@ -162,7 +162,7 @@ update_graph (GeglOperation *operation)
 default: usethis = state->hardlight;
   }
   gegl_node_link_many (state->input, state->nop, state->nr, state->gegl1, state->dog, state->gegl2, state->levels, state->gegl3, usethis, state->gegl4, state->smooth, state->mcb, state->output,  NULL);
-  gegl_node_connect_from (usethis, "aux", state->lightchroma, "output");
+  gegl_node_connect (usethis, "aux", state->lightchroma, "output");
   gegl_node_link_many (state->nop, state->lightchroma, NULL);
 }
 
@@ -253,7 +253,7 @@ GeglProperties *o = GEGL_PROPERTIES (operation);
 
   /*  ORIGINAL GEGL GRAPH
   gegl_node_link_many (input, nop, nr, gegl1, dog, gegl2, levels, gegl3, hardlight, gegl4, smooth, mcb, output, NULL);
-  gegl_node_connect_from (hardlight, "aux", lightchroma, "output");
+  gegl_node_connect (hardlight, "aux", lightchroma, "output");
   gegl_node_link_many (nop, lightchroma, NULL);
 
 
@@ -294,10 +294,10 @@ GeglOperationMetaClass *operation_meta_class = GEGL_OPERATION_META_CLASS (klass)
   operation_meta_class->update = update_graph;
 
   gegl_operation_class_set_keys (operation_class,
-    "name",        "gegl:photo2cartoon",
+    "name",        "lb:photo2cartoon",
     "title",       _("Photo to Cartoon"),
     "reference-hash", "h3af1vv0nyesyeefjf25sb2ac",
-    "description", _("GEGL makes a image into a cartoon."
+    "description", _("Make a image into a cartoon."
                      ""),
     "gimp:menu-path", "<Image>/Filters/Artistic",
     "gimp:menu-label", _("Photo to Cartoon..."),
