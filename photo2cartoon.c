@@ -71,7 +71,7 @@ enum_start (gegl_blend_mode_type2)
               N_("HardLight"))
   enum_value (GEGL_BLEND_MODE_TYPE_MULTIPLY,      "Multiply",
               N_("Multiply"))
-  enum_value (GEGL_BLEND_MODE_TYPE_OVERLAY,      "Overlay", 
+  enum_value (GEGL_BLEND_MODE_TYPE_OVERLAY,      "Overlay",
               N_("Overlay"))
 property_enum (blendmode, _("Blend Mode of Lighting and Chroma"),
     GeglBlendModeType2, gegl_blend_mode_type2,
@@ -131,7 +131,7 @@ property_int  (mcb, _("Smooth Final Image"), 2)
 typedef struct
 {
   GeglNode *input;
-  GeglNode *nop; 
+  GeglNode *nop;
   GeglNode *nr;
   GeglNode *gegl1;
   GeglNode *dog;
@@ -140,11 +140,11 @@ typedef struct
   GeglNode *gegl3;
   GeglNode *hardlight;
   GeglNode *multiply;
-  GeglNode *overlay; 
+  GeglNode *overlay;
   GeglNode *lightchroma;
   GeglNode *gegl4;
   GeglNode *smooth;
-  GeglNode *mcb;  
+  GeglNode *mcb;
   GeglNode *output;
 }State;
 
@@ -246,10 +246,6 @@ GeglProperties *o = GEGL_PROPERTIES (operation);
   gegl_operation_meta_redirect (operation, "radius2", dog, "radius2");
   gegl_operation_meta_redirect (operation, "lightness", lightchroma, "lightness");
   gegl_operation_meta_redirect (operation, "mcb", mcb, "iterations");
-  gegl_operation_meta_redirect (operation, "string1", gegl1, "string");
-  gegl_operation_meta_redirect (operation, "string2", gegl2, "string");
-  gegl_operation_meta_redirect (operation, "string3", gegl3, "string");
-  gegl_operation_meta_redirect (operation, "string4", gegl4, "string");
 
   /*  ORIGINAL GEGL GRAPH
   gegl_node_link_many (input, nop, nr, gegl1, dog, gegl2, levels, gegl3, hardlight, gegl4, smooth, mcb, output, NULL);
