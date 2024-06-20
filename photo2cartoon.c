@@ -89,16 +89,14 @@ property_double (lightness, _("Lightness"), 0.0)
    value_range  (-0, 18.0)
 
 property_double (radius1, _("Difference of Gaussian 1"), 1.2)
-  value_range (0.0, 4.0)
   ui_range (0.0, 2.0)
   ui_gamma (1.5)
    value_range  (0.500, 2.00)
 
 property_double (radius2, _("Difference of Gaussian 2"), 0.53)
-  value_range (0.0, 4.0)
-  ui_range (0.0, 2.0)
   ui_gamma (1.5)
-   value_range  (0.0, 0.6)
+   ui_range  (0.0, 0.62)
+   value_range  (0.0, 1.00)
 
 property_int (smooth, _("Domain Smooth Settings"), 3)
   description(_("Number of filtering iterations. "
