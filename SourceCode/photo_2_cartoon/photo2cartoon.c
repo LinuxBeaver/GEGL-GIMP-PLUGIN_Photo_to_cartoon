@@ -18,7 +18,7 @@
  */
 
 /*
-This GEGL Graph was made by someone other then me. Paste this into Gimp's GEGL Graph plugin
+This GEGL Graph was made by someone other then me. Paste this into Gimpꞌs GEGL Graph plugin
 to test it without installing.
 
 id=myStart
